@@ -5,7 +5,14 @@ You will be finding all the notes here very soon and will update this site asap
 [Notes](/Notes/)
 
 ## Advanced Deep Representation Learning
-1. [Link](/Notes/Report_on__Improving_Variational_Inference_using_Autoregressive_Flows__by_Kingma_et_al.pdf)
+1. Introduction to Variational AutoEncoder [Link](/Notes/Introduction_to_Variational_AutoEncoder.pdf)
+2. Training VAE and Gans [Link](/Notes/VAE_GAN.pdf)
+3. Training Diffusion Models for generating Images and experiment on Domain Adaption techniques [Link](/Notes/Diffusion_Model_And_Domain_Adaptation.pdf)
+4. Training MOCO and visualization with TSNE [Link](/Notes/TSNE_MOCO.pdf)
+5. Improving Variational Inference using Autoregressive Flows [Link](/Notes/Report_on__Improving_Variational_Inference_using_Autoregressive_Flows__by_Kingma_et_al.pdf)
+6. Domain-Adversarial Training of Neural Networks [Link](/Notes/Report_on__Domain_Adversarial_Training_of_Neural_Networks__by_Ganin_et_al.pdf)
+7. Your Classifier is secretly an energy based model and you should treat it like one [Link](/Notes/Report_on__Your_Classifier_is_secretly_an_energy_based_model_and_you_should_treat_it_like_one__by_Grathwol_et_al.pdf)
+
 
 
 ## Research Papers
