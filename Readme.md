@@ -4,16 +4,27 @@ You will be finding all the notes here very soon and will update this site asap
 
 [Notes](/Notes/)
 
+## Project
+
+1. Learning Single-View & Multiple-View 3D Object Reconstruction [Code](Code/) [PPT](/Notes/visionproject.pdf) [PDF](/Notes/visionprojectpaper.pdf) 
+2. Transformer from scratch [Code] (Code/)
+3. Self Supervised Pre Training [Code] (Code/)
+4. Simple VAE [Code] (Code/) [PDF] (/Notes/VAE_GAN.pdf)
+5. Diffusion Model [Code] (Code/) [PDF] (/Notes/Diffusion_Model_And_Domain_Adaptation.pdf)(/Notes/Diffusion_Model_And_Domain_Adaptation.pdf)
+6. Training MOCO [Code] (Code/) [PDF] (/Notes/TSNE_MOCO.pdf)
+   
 ## Advanced Deep Representation Learning
+### Theory Paper Analysis/Review/Report
 1. Introduction to Variational AutoEncoder [Link](/Notes/Introduction_to_Variational_AutoEncoder.pdf)
-2. Training VAE and Gans [Link](/Notes/VAE_GAN.pdf)
-3. Training Diffusion Models for generating Images and experiment on Domain Adaption techniques [Link](/Notes/Diffusion_Model_And_Domain_Adaptation.pdf)
-4. Training MOCO and visualization with TSNE [Link](/Notes/TSNE_MOCO.pdf)
-5. Improving Variational Inference using Autoregressive Flows [Link](/Notes/Report_on__Improving_Variational_Inference_using_Autoregressive_Flows__by_Kingma_et_al.pdf)
-6. Domain-Adversarial Training of Neural Networks [Link](/Notes/Report_on__Domain_Adversarial_Training_of_Neural_Networks__by_Ganin_et_al.pdf)
-7. Your Classifier is secretly an energy based model and you should treat it like one [Link](/Notes/Report_on__Your_Classifier_is_secretly_an_energy_based_model_and_you_should_treat_it_like_one__by_Grathwol_et_al.pdf)
+2. Improving Variational Inference using Autoregressive Flows [Link](/Notes/Report_on__Improving_Variational_Inference_using_Autoregressive_Flows__by_Kingma_et_al.pdf)
+3. Domain-Adversarial Training of Neural Networks [Link](/Notes/Report_on__Domain_Adversarial_Training_of_Neural_Networks__by_Ganin_et_al.pdf)
+4. Your Classifier is secretly an energy based model and you should treat it like one [Link](/Notes/Report_on__Your_Classifier_is_secretly_an_energy_based_model_and_you_should_treat_it_like_one__by_Grathwol_et_al.pdf)
+5. Diffusion Model [Link](Notes/DiffusionModel.pdf)
 
-
+### Practical
+1. Training VAE and Gans [Link]
+2. Training Diffusion Models for generating Images and experiment on Domain Adaption techniques [Link](/Notes/Diffusion_Model_And_Domain_Adaptation.pdf)
+3. Training MOCO and visualization with TSNE [Link](/Notes/TSNE_MOCO.pdf)
 
 ## Research Papers
 
