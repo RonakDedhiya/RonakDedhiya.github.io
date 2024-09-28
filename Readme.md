@@ -4,6 +4,10 @@ You will be finding all the notes here very soon and will update this site asap
 
 [Notes](/Notes/)
 
+## Advanced Deep Representation Learning
+1. [Link](/Notes/Report_on__Improving_Variational_Inference_using_Autoregressive_Flows__by_Kingma_et_al.pdf)
+
+
 ## Research Papers
 
 1. Dedhiya, Ronak, et al. "Evaluation of Non-Invasive Thermal Imaging for Detection of Viability of Onchocerciasis Worms." 2022 44th Annual International Conference of the IEEE Engineering in Medicine & Biology Society (EMBC). IEEE, 2022. [Link](https://ieeexplore.ieee.org/abstract/document/9871140/)
