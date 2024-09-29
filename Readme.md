@@ -1,4 +1,4 @@
-Welcome to My Page: Ronak Dedhiya
+Welcome to My Page
 
 ## Project
 1. Learning Single-View & Multiple-View 3D Object Reconstruction [Code](Code/3dreconstructionVision.ipynb) [PPT](/Notes/visionproject.pdf) [Paper](/Notes/visionprojectpaper.pdf)
@@ -7,6 +7,7 @@ Welcome to My Page: Ronak Dedhiya
 4. Simple VAE [Code](Code/celebA_simpleVAE.ipynb) [Report](/Notes/VAE_GAN.pdf)
 5. Diffusion Model [Code](Code/ddpm-diffusion-final.ipynb) [Report](/Notes/Diffusion_Model_And_Domain_Adaptation.pdf)
 6. Training MOCO [Code](Code/moco-v1.ipynb) [Report](/Notes/TSNE_MOCO.pdf)
+7. Sample Efficient Actor Critic with Experience Replay [Code](Code/RL/) [PPT](Notes/RL project - Sample efficient actor critic with experience replay.pdf)
    
 ### Theory Paper Analysis/Review/Report
 1. Introduction to Variational AutoEncoder [Link](/Notes/Introduction_to_Variational_AutoEncoder.pdf)
