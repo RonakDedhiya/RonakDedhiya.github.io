@@ -1,5 +1,7 @@
 Welcome to My Page
 
+<kbd>[Project](#Project)</kbd> <kbd>[Research Papers](#Research Papers)</kbd>
+
 ## Project
 1. Learning Single-View & Multiple-View 3D Object Reconstruction [Code](Code/3dreconstructionVision.ipynb) [PPT](/Notes/visionproject.pdf) [Paper](/Notes/visionprojectpaper.pdf)
 2. Transformer from scratch [Code](Code/TransformerEncoder.ipynb)
@@ -17,7 +19,7 @@ Welcome to My Page
 1. Multiple AI/ML Assignments [Code](Code/AIML/)
 2. Linear and Non-Linear Optimization [Code](Code/LNLO/) [Tutorials](Code/LNLO/Tutorials/)
 3. Reinforcement Learning [Tutorials](Notes/RL/)
-4.  
+   
 ### Theory Paper Analysis/Review/Report
 1. Introduction to Variational AutoEncoder [Link](/Notes/Introduction_to_Variational_AutoEncoder.pdf)
 2. Improving Variational Inference using Autoregressive Flows [Link](/Notes/Report_on__Improving_Variational_Inference_using_Autoregressive_Flows__by_Kingma_et_al.pdf)
