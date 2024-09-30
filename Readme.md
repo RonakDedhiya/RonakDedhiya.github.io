@@ -8,8 +8,16 @@ Welcome to My Page
 5. Diffusion Model [Code](Code/ddpm-diffusion-final.ipynb) [Report](/Notes/Diffusion_Model_And_Domain_Adaptation.pdf)
 6. Training MOCO [Code](Code/moco-v1.ipynb) [Report](/Notes/TSNE_MOCO.pdf)
 7. Sample Efficient Actor Critic with Experience Replay [Code](Code/RL/) [PPT](Notes/RL_project_Sample_efficient_actor_critic_with_experience_replay.pdf)
-8. 3D Breast Surface Reconstruction Using 2D Thermal Images [**MTech Thesis**] [Under IPR] [Yet to be released].
-9. Video Blur Detection [Code](Code/BlurDetection/) [PPT](Notes/BlurDetectionPPT.pdf) [Paper](Notes/BlurDetectionPaper.pdf)   
+8. Qualitative assessment of learned latent factors and generated samples using basic VAE, conditional VAE in conjugation with β - VAE [Code](Code/VAEs/) [Paper](/Notes/Introduction_to_Variational_AutoEncoder.pdf) 
+9. 3D Breast Surface Reconstruction Using 2D Thermal Images [**MTech Thesis**] [Under IPR] [Yet to be released].
+10. Video Blur Detection [Code](Code/BlurDetection/) [PPT](Notes/BlurDetectionPPT.pdf) [Paper](Notes/BlurDetectionPaper.pdf)
+11. Spark Data Analysis on YouTube trending videos [Code](https://github.com/RonakDedhiya/YouTube_Trending_Video_Spark_Data_Analysis/tree/main/main.ipynb) [PDF](Notes/sparkdataanalysis.pdf/)
+
+## Resources
+1. Multiple AI/ML Assignments [Code](Code/AIML/)
+2. Linear and Non-Linear Optimization [Code](Code/LNLO/) [Tutorials](Code/LNLO/Tutorials/)
+3. Reinforcement Learning [Tutorials](Notes/RL/)
+4.  
 ### Theory Paper Analysis/Review/Report
 1. Introduction to Variational AutoEncoder [Link](/Notes/Introduction_to_Variational_AutoEncoder.pdf)
 2. Improving Variational Inference using Autoregressive Flows [Link](/Notes/Report_on__Improving_Variational_Inference_using_Autoregressive_Flows__by_Kingma_et_al.pdf)
