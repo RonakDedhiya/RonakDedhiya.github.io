@@ -8,6 +8,7 @@ Welcome to My Page
 5. Diffusion Model [Code](Code/ddpm-diffusion-final.ipynb) [Report](/Notes/Diffusion_Model_And_Domain_Adaptation.pdf)
 6. Training MOCO [Code](Code/moco-v1.ipynb) [Report](/Notes/TSNE_MOCO.pdf)
 7. Sample Efficient Actor Critic with Experience Replay [Code](Code/RL/) [PPT](Notes/RL_project_Sample_efficient_actor_critic_with_experience_replay.pdf)
+8. 3D Breast Surface Reconstruction Using 2D Thermal Images [MTech Thesis] [Under IPR] [Yet to be released].
    
 ### Theory Paper Analysis/Review/Report
 1. Introduction to Variational AutoEncoder [Link](/Notes/Introduction_to_Variational_AutoEncoder.pdf)
