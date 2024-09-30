@@ -7,17 +7,19 @@ Welcome to My Page
 
 
 ## Project
-1. Learning Single-View & Multiple-View 3D Object Reconstruction [Code](Code/3dreconstructionVision.ipynb) [PPT](/Notes/visionproject.pdf) [Paper](/Notes/visionprojectpaper.pdf)
-2. Transformer from scratch [Code](Code/TransformerEncoder.ipynb)
-3. Self Supervised Pre Training [Code](Code/self-supervised.ipynb)
-4. Simple VAE [Code](Code/celebA_simpleVAE.ipynb) [Report](/Notes/VAE_GAN.pdf)
-5. Diffusion Model [Code](Code/ddpm-diffusion-final.ipynb) [Report](/Notes/Diffusion_Model_And_Domain_Adaptation.pdf)
-6. Training MOCO [Code](Code/moco-v1.ipynb) [Report](/Notes/TSNE_MOCO.pdf)
-7. Sample Efficient Actor Critic with Experience Replay [Code](Code/RL/) [PPT](Notes/RL_project_Sample_efficient_actor_critic_with_experience_replay.pdf)
-8. Qualitative assessment of learned latent factors and generated samples using basic VAE, conditional VAE in conjugation with β - VAE [Code](Code/VAEs/) [Paper](/Notes/Introduction_to_Variational_AutoEncoder.pdf) 
-9. 3D Breast Surface Reconstruction Using 2D Thermal Images [**MTech Thesis**] [Under IPR] [Yet to be released].
-10. Video Blur Detection [Code](Code/BlurDetection/) [PPT](Notes/BlurDetectionPPT.pdf) [Paper](Notes/BlurDetectionPaper.pdf)
-11. Spark Data Analysis on YouTube trending videos [Code](https://github.com/RonakDedhiya/YouTube_Trending_Video_Spark_Data_Analysis/tree/main/main.ipynb) [PDF](Notes/sparkdataanalysis.pdf/)
+1. Transformer from scratch [Code](Code/TransformerEncoder.ipynb)
+2. Self Supervised Pre Training [Code](Code/self-supervised.ipynb)
+3. Simple VAE [Code](Code/celebA_simpleVAE.ipynb) [Report](/Notes/VAE_GAN.pdf)
+4. Diffusion Model [Code](Code/ddpm-diffusion-final.ipynb) [Report](/Notes/Diffusion_Model_And_Domain_Adaptation.pdf)
+5. Training MOCO [Code](Code/moco-v1.ipynb) [Report](/Notes/TSNE_MOCO.pdf)
+6. Video Blur Detection [Code](Code/BlurDetection/) [PPT](Notes/BlurDetectionPPT.pdf) [Paper](Notes/BlurDetectionPaper.pdf)
+7. Automatic Defect Inspection of solar farm using drones [Code](https://github.com/RonakDedhiya/Automatic-Defect-Inspection-of-Solar-Farm/)
+8. Spark Data Analysis on YouTube trending videos [Code](https://github.com/RonakDedhiya/YouTube_Trending_Video_Spark_Data_Analysis/tree/main/main.ipynb) [PDF](Notes/sparkdataanalysis.pdf/)
+9. Sample Efficient Actor Critic with Experience Replay [Code](Code/RL/) [PPT](Notes/RL_project_Sample_efficient_actor_critic_with_experience_replay.pdf)
+10. Qualitative assessment of learned latent factors of basic VAE, conditional VAE in conjugation with β - VAE [Code](Code/VAEs/) [Paper](/Notes/Introduction_to_Variational_AutoEncoder.pdf)
+11. Learning Single-View & Multiple-View 3D Object Reconstruction [Code](Code/3dreconstructionVision.ipynb) [PPT](/Notes/visionproject.pdf) [Paper](/Notes/visionprojectpaper.pdf)
+12. 3D Breast Surface Reconstruction Using 2D Thermal Images [**MTech Thesis**] [Under IPR] [Yet to be released].
+
 
 ## Resources
 1. Multiple AI/ML Assignments [Code](Code/AIML/)
