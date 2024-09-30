@@ -1,23 +1,12 @@
-Welcome to My Page
 
-Experienced Machine Learning and Deep Learning researcher with over 8 years of experience in developing and deploying end-to-end AI solutions in challenging, data-scarce environments. Strong academic foundation with a Master's thesis focused on generating 3D models from minimal data, coupled with multiple publications. Adept at working in startup environments, leading projects from concept to production with cloud and on-premise deployments.
+Hi, I am Ronak
+I am an experienced Machine Learning and Deep Learning researcher with over 8 years of experience in developing and deploying end-to-end AI solutions in challenging, data-scarce environments. Strong academic foundation with a Master's thesis focused on generating 3D models from minimal data, coupled with multiple publications. Adept at working in startup environments, leading projects from concept to production with cloud and on-premise deployments.
 
 
-[<kbd>MY CV</kbd>]
-[<kbd> Courses </kbd>]
+[<kbd>MY CV</kbd>](Notes/cv.pdf)
 [<kbd>Project</kbd>](#Project) 
 [<kbd>Research Papers </kbd>](#Research-Papers)
 [<kbd>Resources </kbd>](#Resources)
-
-
-## Courses
-<kbd> Advanced Deep Representation Learning </kbd>
-<kbd> Reinforcement Learning </kbd>
-<kbd> Vision </kbd>
-<kbd> Deep Learning & Machine Learning Specialization </kbd>
-<kbd> Linear and Non-Linear Optimization </kbd>
-<kbd> Data Engineering at scale </kbd>
-<kbd> Data structures and Graphs </kbd>
 
 ## Project
 1. Transformer from scratch [Code](Code/TransformerEncoder.ipynb)
