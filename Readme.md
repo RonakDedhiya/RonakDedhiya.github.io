@@ -1,5 +1,6 @@
 
 Hi, I am Ronak
+
 I am an experienced Machine Learning and Deep Learning researcher with over 8 years of experience in developing and deploying end-to-end AI solutions in challenging, data-scarce environments. Strong academic foundation with a Master's thesis focused on generating 3D models from minimal data, coupled with multiple publications. Adept at working in startup environments, leading projects from concept to production with cloud and on-premise deployments.
 
 
