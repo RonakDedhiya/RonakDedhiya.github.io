@@ -3,7 +3,6 @@ Welcome to My Page
 [<kbd>Project</kbd>](#Project) 
 [<kbd>Research Papers </kbd>](#Research-Papers)
 [<kbd>Resources </kbd>](#Resources)
-[<kbd>Theory Paper Analysis/Review/Report</kbd>](#Theory-Paper-Analysis/Review/Report)
 
 
 
