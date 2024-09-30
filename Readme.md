@@ -3,6 +3,14 @@ Welcome to My Page
 <kbd>[Project](#Project)</kbd> 
 <kbd>[Research Papers](#Research)</kbd>
 
+<details>
+  <summary>##Project</summary>
+  1. Learning Single-View & Multiple-View 3D Object Reconstruction [Code](Code/3dreconstructionVision.ipynb) [PPT](/Notes/visionproject.pdf) [Paper](/Notes/visionprojectpaper.pdf)
+2. Transformer from scratch [Code](Code/TransformerEncoder.ipynb)
+
+   
+</details>
+
 ## Project
 1. Learning Single-View & Multiple-View 3D Object Reconstruction [Code](Code/3dreconstructionVision.ipynb) [PPT](/Notes/visionproject.pdf) [Paper](/Notes/visionprojectpaper.pdf)
 2. Transformer from scratch [Code](Code/TransformerEncoder.ipynb)
