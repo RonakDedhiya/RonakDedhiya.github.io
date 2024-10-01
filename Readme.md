@@ -9,6 +9,9 @@ I am an experienced Machine Learning and Deep Learning researcher with over 8 ye
 [<kbd>Research Papers </kbd>](#research-papers)
 [<kbd>Resources </kbd>](#resources)
 
+[<kbd>Github</kbd>](https://github.com/RonakDedhiya)
+[<kbd>Linkedin</kbd>](https://www.linkedin.com/in/ronak-dedhiya/)
+
 ## Project
 1. Transformer from scratch [Code](Code/TransformerEncoder.ipynb)
 2. Self Supervised Pre Training [Code](Code/self-supervised.ipynb)
