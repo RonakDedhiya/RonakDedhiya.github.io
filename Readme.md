@@ -5,9 +5,9 @@ I am an experienced Machine Learning and Deep Learning researcher with over 8 ye
 
 
 [<kbd>MY CV</kbd>](Notes/cv.pdf)
-[<kbd>Project</kbd>](#Project) 
-[<kbd>Research Papers </kbd>](#Research-Papers)
-[<kbd>Resources </kbd>](#Resources)
+[<kbd>Project</kbd>](# Project) 
+[<kbd>Research Papers </kbd>](# Research-Papers)
+[<kbd>Resources </kbd>](# Resources)
 
 ## Project
 1. Transformer from scratch [Code](Code/TransformerEncoder.ipynb)
