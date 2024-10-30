@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Stream Viewer</title>
+</head>
+<body>
+    <h1>Live Camera Stream</h1>
+    <img id="cameraStream" alt="Streaming Image" style="width: 320px; height: 240px; border: 1px solid black;" />
+
+    <script>
+        async function fetchImage() {
+            try {
+                // Fetch the image data from the API
+                const response = await fetch("http://localhost:8080/image/");
+                if (response.ok) {
+                    const base64Image = await response.text();
+                    // Set the image source to the base64 data
+                    document.getElementById("cameraStream").src = "data:image/jpeg;base64," + base64Image;
+                } else {
+                    console.error("Failed to fetch image data:", response.statusText);
+                }
+            } catch (error) {
+                console.error("Error fetching image data:", error);
+            }
+        }
+
+        // Update the image every second (1000 ms)
+        setInterval(fetchImage, 100);
+    </script>
+</body>
+</html>
