@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket Livestream Client</title>
+</head>
+<body>
+    <h1>WebSocket Livestream</h1>
+    <canvas id="livestreamCanvas" width="320" height="240"></canvas>
+
+    <script>
+        var webSocket;
+        var canvas = document.getElementById("livestreamCanvas");
+        var ctx = canvas.getContext("2d");
+
+        function connectWebSocket() {
+            webSocket = new WebSocket("ws://localhost:8080/");
+            webSocket.binaryType = 'arraybuffer';
+
+            webSocket.onopen = function () {
+                console.log("WebSocket connection established.");
+                sendInitialData();
+            };
+
+            webSocket.onmessage = function (event) {
+                var imageData = new Uint8Array(event.data);
+                var image = new Image();
+                image.onload = function () {
+                    ctx.drawImage(image, 0, 0);
+                };
+                image.src = 'data:image/jpeg;base64,' + btoa(String.fromCharCode.apply(null, imageData));
+                sendInitialData();
+            };
+
+            webSocket.onclose = function () {
+                console.log("WebSocket connection closed.");
+            };
+        }
+
+        function sendInitialData() {
+            // Send a small amount of initial data to the server
+            var initialData = new Uint8ClampedArray(10);
+            webSocket.send(initialData);
+        }
+
+        connectWebSocket();
+    </script>
+</body>
+</html>
