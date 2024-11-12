@@ -1,33 +1,573 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Stream Viewer</title>
+    <title>Thermal Analysis</title>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            background-color: rgb(249, 250, 251);
+            padding: 1.5rem;
+        }
+
+        .container {
+            max-width: 80rem;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo {
+            width: 3rem;
+            height: 3rem;
+            background-color: rgb(236, 72, 153);
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            color: white;
+        }
+
+        .title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: rgb(17, 24, 39);
+        }
+
+        .version {
+            font-size: 0.875rem;
+            color: rgb(107, 114, 128);
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid rgb(229, 231, 235);
+            border-radius: 0.375rem;
+            background-color: white;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+
+        .button:hover {
+            background-color: rgb(249, 250, 251);
+        }
+
+        .button svg {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: repeat(14, minmax(0, 1fr));
+            gap: 1.5rem;
+        }
+
+        .sidebar {
+            grid-column: span 2;
+            background-color: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .area-button {
+            width: 100%;
+            text-align: left;
+            padding: 0.5rem;
+            margin: 0.25rem 0;
+            border: none;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+
+        .area-button:hover {
+            background-color: rgb(243, 244, 246);
+        }
+
+        .area-button.selected {
+            background-color: rgb(59, 130, 246);
+            color: white;
+        }
+
+        .main-view {
+            grid-column: span 8;
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .display-section {
+            background-color: rgb(31, 41, 55);
+            padding: 1.5rem;
+            border-radius: 1rem 1rem 0 0;
+        }
+
+        .main-display {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .thermal-view-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .thermal-view {
+            flex: 1;
+            aspect-ratio: 16/8;
+            background-color: rgb(17, 24, 39);
+            border-radius: 0.5rem;
+            border: 4px solid rgb(55, 65, 81);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgb(156, 163, 175);
+        }
+
+        #livestreamCanvas,
+        #FrontView,
+        #LeftLatView,
+        #LeftOblView,
+        #RightLatView,
+        #RightOblView {
+            width: 100%;
+            /* Canvas fills container width */
+            height: 100%;
+            /* Canvas fills container height */
+        }
+
+        .breast-views {
+            flex: 1;
+            display: grid;
+            grid-template-rows: repeat(5, 1fr);
+            gap: 0.5rem;
+            /* margin-left: 1rem; */
+        }
+
+        .breast-view {
+            flex: 1;
+            aspect-ratio: 16/9;
+            background-color: rgb(17, 24, 39);
+            border-radius: 0.5rem;
+            border: 4px solid white;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: rgb(156, 163, 175);
+            font-size: 0.50rem;
+            text-align: center;
+            max-height: 75px;
+        }
+
+        .temperature-scale {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1rem;
+        }
+
+        .gradient-bar {
+            height: 100%;
+            width: 1.5rem;
+            border-radius: 9999px;
+            background: linear-gradient(to bottom,
+                    rgb(239, 68, 68),
+                    rgb(234, 179, 8),
+                    rgb(34, 197, 94),
+                    rgb(59, 130, 246));
+            margin: 0.5rem 0;
+        }
+
+        .gradient-bar1 {
+            height: 100%;
+            width: 1.5rem;
+            border-radius: 9999px;
+            margin: 0.5rem 0;
+        }
+
+        .temp-label {
+            font-size: 0.75rem;
+            color: rgb(209, 213, 219);
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+
+        .statuscontrols {
+            display: flex;
+            justify-content: center;
+            color: white;
+            /* gap: 2rem;
+            margin-top: 1.5rem; */
+        }
+
+        .control-button {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 9999px;
+            border: none;
+            background-color: rgb(229, 231, 235);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .control-button svg {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        .control-button.capture {
+            background-color: rgb(236, 72, 153);
+        }
+
+        .control-button.capture svg {
+            color: white;
+        }
+
+        .control-button {
+            position: relative;
+            /* Required for positioning the tooltip */
+        }
+
+        .control-button:hover::after {
+            content: attr(data-tooltip);
+            /* Get text from data-tooltip attribute */
+            position: absolute;
+            bottom: 110%;
+            /* Position tooltip above the button */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgb(17, 24, 39);
+            color: rgb(156, 163, 175);
+            padding: 5px 8px;
+            border-radius: 4px;
+            white-space: nowrap;
+            font-size: 0.75rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s;
+        }
+
+        .control-button:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 1.5rem;
+        }
+
+        .next-button {
+            padding: 0.5rem 2rem;
+            background-color: rgb(59, 130, 246);
+            color: white;
+            border: none;
+            border-radius: 0.375rem;
+            cursor: pointer;
+        }
+
+        .next-button:hover {
+            background-color: rgb(37, 99, 235);
+        }
+
+        .border-highlight {
+            border: 4px solid lightblue;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Live Camera Stream</h1>
-    <img id="cameraStream" alt="Streaming Image" style="width: 320px; height: 240px; border: 1px solid black;" />
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo">
+                    <i data-lucide="beaker"></i>
+                </div>
+                <div>
+                    <h1 class="title">Thermal Analysis</h1>
+                    <p class="version">v2.0.0</p>
+                </div>
+            </div>
+
+            <!-- <div class="header-buttons">
+                <button class="button">
+                    <i data-lucide="image"></i>
+                    Upload Images
+                </button>
+                <button class="button">
+                    <i data-lucide="clipboard-list"></i>
+                    Reports
+                </button>
+            </div> -->
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Sidebar -->
+            <div class="sidebar">
+                <button class="area-button">Head</button>
+                <button class="area-button">Neck</button>
+                <button class="area-button selected">Breast/Chest</button>
+                <button class="area-button">Hands</button>
+                <button class="area-button">Arms</button>
+                <button class="area-button">Abdomen</button>
+                <button class="area-button">Back</button>
+                <button class="area-button">Legs</button>
+                <button class="area-button">Foot</button>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="main-view">
+                <div class="display-section">
+                    <div class="main-display">
+                        <div class="thermal-view-container">
+                            <div class="thermal-view">
+                                <canvas id="livestreamCanvas">Current Thermal Image View
+                                </canvas>
+                            </div>
+                        </div>
+
+                        <div class="temperature-scale">
+                            <span class="temp-label">37.18°C</span>
+                            <div class="gradient-bar"></div>
+                            <span class="temp-label">23.35°C</span>
+                        </div>
+                    </div>
+
+                    <div class="main-display">
+                        <div class = "thermal-view-container">
+                            <div class="statuscontrols" id="statusIndicator">
+                                <!-- Status text or icon will go here, e.g., "Connected", "Starting Stream", "Error" -->
+                            </div>
+
+                            <div class="controls">
+                                <button class="control-button" data-tooltip="Connect to Camera" id="SendConnectSignal">
+                                    <i data-lucide="cable"></i>
+                                </button>
+                                <button class="control-button" data-tooltip="Start/Play the Stream" id="StartSignal">
+                                    <i data-lucide="play-circle"></i>
+                                </button>
+                                <button class="control-button capture" data-tooltip="Capture the Image"
+                                    id="CaptureImage">
+                                    <i data-lucide="camera"></i>
+                                </button>
+                                <button class="control-button" data-tooltip="Stop/Pause the stream" id="StopSignal">
+                                    <i data-lucide="pause-circle"></i>
+                                </button>
+                                <button class="control-button" data-tooltip="Refresh">
+                                    <i data-lucide="refresh-cw"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="temperature-scale">
+                            <span class="temp-label"></span>
+                            <div class="gradient-bar1"></div>
+                            <span class="temp-label"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Sidebar -->
+            <div class="sidebar">
+                <div class="breast-views">
+                    <div class="breast-view" id="Front"><canvas id="FrontView"></canvas></div>
+                    <div class="breast-view" id="LeftLat"><canvas id="LeftLatView"></canvas></div>
+                    <div class="breast-view" id="LeftObl"><canvas id="LeftOblView"></canvas></div>
+                    <div class="breast-view" id="RightLat"><canvas id="RightLatView"></canvas></div>
+                    <div class="breast-view" id="RightObl"><canvas id="RightOblView"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Actions -->
+        <div class="footer">
+            <button class="next-button">Next</button>
+        </div>
+    </div>
 
     <script>
-        async function fetchImage() {
-            try {
-                // Fetch the image data from the API
-                const response = await fetch("http://localhost:8080/image/");
-                if (response.ok) {
-                    const base64Image = await response.text();
-                    // Set the image source to the base64 data
-                    document.getElementById("cameraStream").src = "data:image/jpeg;base64," + base64Image;
-                } else {
-                    console.error("Failed to fetch image data:", response.statusText);
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        //Creating border highlight event on click of the view
+        const breastviews = ["Front", "LeftLat", "LeftObl", "RightLat", "RightObl"]
+        var selectedBreastView = "FrontView"
+        for (let i = 0; i < breastviews.length; i++) {
+            document.getElementById(breastviews[i]).addEventListener('click', function () {
+                const views = document.getElementsByClassName('breast-view');
+                for (let j = 0; j < views.length; j++) {
+                    views[j].classList.remove('border-highlight');
                 }
-            } catch (error) {
-                console.error("Error fetching image data:", error);
+                document.getElementById(breastviews[i]).classList.add('border-highlight');
+                selectedBreastView = breastviews[i] + "View";
+            });
+        }
+
+        // Get the frontview selected by default
+        document.getElementById("Front").click();
+
+        // var canvas = document.getElementById("livestreamCanvas")
+        // var ctx = canvas.getContext('2d')
+        // ctx.fillStyle = 'rgb(236, 72, 153)'; // Customize the text color and font
+        // ctx.font = '10px sans-serif';
+        // ctx.textAlign = "center";
+        // ctx.textBaseline = "middle";
+        // text = "Device Not Found"
+        // ctx.fillText(text, (canvas.width/2), canvas.height-10);
+
+        document.getElementById('SendConnectSignal').addEventListener('click', async (event) => {
+            console.log('Connect Button clicked!');
+
+            const response = await fetch("http://localhost:8081/connect");
+            console.log(response);
+
+            // Add your custom action here
+            var webSocket = new WebSocket("ws://localhost:8080/");
+            var canvas = document.getElementById("livestreamCanvas");
+            var ctx = canvas.getContext("2d");
+            const canvasWidth = canvas.width;
+            const canvasHeight = canvas.height;
+            webSocket.binaryType = 'arraybuffer';
+
+            webSocket.onopen = function () {
+                console.log("WebSocket connection established.");
+                //sendInitialData();
+            };
+
+            webSocket.onmessage = function (event) {
+                var imageData = new Uint8Array(event.data);
+                var image = new Image();
+                liveStreamImage = new Image()
+                image.onload = function () {
+                    ctx.drawImage(image, 0, 0, canvasWidth, canvasHeight);
+                };
+                image.src = 'data:image/jpeg;base64,' + btoa(String.fromCharCode.apply(null, imageData));
+                //sendInitialData();
+            };
+
+            webSocket.onclose = function () {
+                console.log("WebSocket connection closed.");
+            };
+        });
+
+        document.getElementById('StopSignal').addEventListener('click', async (event) => {
+            console.log('Stop Signal!');
+            const response = await fetch("http://localhost:8081/disconnect");
+            console.log(response);
+        });
+
+
+        document.getElementById('StartSignal').addEventListener('click', async (event) => {
+            console.log('Start Signal!');
+            const response = await fetch("http://localhost:8081/start");
+            console.log(response);
+        });
+
+        document.getElementById('CaptureImage').addEventListener('click', async (event) => {
+            console.log('Capture Image!');
+            const response = await fetch("http://localhost:8081/capture");
+            console.log(response);
+
+            const buffer = await response.arrayBuffer();
+            const doubleArray = getTemperatureData(buffer)
+            _ = setBreastViewCanvas();
+            const response1 = await fetch("http://localhost:8081/start");
+
+        });
+
+        function getTemperatureData(buffer) {
+            const view = new DataView(buffer);
+            const numDoubles = buffer.byteLength / 8;
+            const doubleArray = new Array(numDoubles);
+            for (let i = 0; i < numDoubles; i++) {
+                doubleArray[i] = view.getFloat64(i * 8, true); // true for little-endian
+            }
+            return doubleArray
+        }
+
+        function setBreastViewCanvas() {
+            const canvas1 = document.getElementById('livestreamCanvas');
+            const ctx1 = canvas1.getContext('2d');
+            const canvas2 = document.getElementById(selectedBreastView);
+            const ctx2 = canvas2.getContext('2d');
+
+            const scaleX = canvas2.width / canvas1.width;
+            const scaleY = canvas2.height / canvas1.height;
+            const scale = Math.min(scaleX, scaleY);
+
+            // Draw the scaled image on canvas2
+            ctx2.drawImage(canvas1, 0, 0, canvas1.width * scale, canvas1.height * scale);
+
+            //Highlight border of next view
+            for (let i = 0; i < breastviews.length; i++) {
+                if (selectedBreastView == breastviews[i] + "View") {
+                    if (i != breastviews.length - 1) {
+                        selectedBreastView = breastviews[i + 1] + "View";
+                        document.getElementById(selectedBreastView).click();
+                        break;
+                    }
+                }
             }
         }
 
-        // Update the image every second (1000 ms)
-        setInterval(fetchImage, 100);
+
+
+
     </script>
 </body>
+
 </html>
