@@ -236,14 +236,16 @@
             display: flex;
             justify-content: center;
             gap: 2rem;
-            margin-top: 1.5rem;
+            margin-top: 1rem;
         }
 
 
         .statuscontrols {
             display: flex;
             justify-content: center;
-            color: white;
+            color: whitesmoke;
+            font-size: 0.875rem;
+            animation: blink 1s infinite;
             /* gap: 2rem;
             margin-top: 1.5rem; */
         }
@@ -324,7 +326,23 @@
         .border-highlight {
             border: 4px solid lightblue;
         }
+        .blink{
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
     </style>
+
 </head>
 
 <body>
@@ -380,9 +398,9 @@
                         </div>
 
                         <div class="temperature-scale">
-                            <span class="temp-label">37.18°C</span>
+                            <span class="temp-label" id = "maxTemp">37.18°C</span>
                             <div class="gradient-bar"></div>
-                            <span class="temp-label">23.35°C</span>
+                            <span class="temp-label" id = "minTemp">23.35°C</span>
                         </div>
                     </div>
 
@@ -444,8 +462,9 @@
         lucide.createIcons();
 
         //Creating border highlight event on click of the view
-        const breastviews = ["Front", "LeftLat", "LeftObl", "RightLat", "RightObl"]
-        var selectedBreastView = "FrontView"
+        const breastviews = ["Front", "LeftLat", "LeftObl", "RightLat", "RightObl"];
+        var selectedBreastView = "FrontView";
+        let breastTempData = {};
         for (let i = 0; i < breastviews.length; i++) {
             document.getElementById(breastviews[i]).addEventListener('click', function () {
                 const views = document.getElementsByClassName('breast-view');
@@ -460,84 +479,116 @@
         // Get the frontview selected by default
         document.getElementById("Front").click();
 
-        // var canvas = document.getElementById("livestreamCanvas")
-        // var ctx = canvas.getContext('2d')
-        // ctx.fillStyle = 'rgb(236, 72, 153)'; // Customize the text color and font
-        // ctx.font = '10px sans-serif';
-        // ctx.textAlign = "center";
-        // ctx.textBaseline = "middle";
-        // text = "Device Not Found"
-        // ctx.fillText(text, (canvas.width/2), canvas.height-10);
 
-        document.getElementById('SendConnectSignal').addEventListener('click', async (event) => {
-            console.log('Connect Button clicked!');
-
-            const response = await fetch("http://localhost:8081/connect");
-            console.log(response);
-
-            // Add your custom action here
-            var webSocket = new WebSocket("ws://localhost:8080/");
-            var canvas = document.getElementById("livestreamCanvas");
-            var ctx = canvas.getContext("2d");
-            const canvasWidth = canvas.width;
-            const canvasHeight = canvas.height;
-            webSocket.binaryType = 'arraybuffer';
-
-            webSocket.onopen = function () {
-                console.log("WebSocket connection established.");
-                //sendInitialData();
-            };
-
-            webSocket.onmessage = function (event) {
-                var imageData = new Uint8Array(event.data);
-                var image = new Image();
-                liveStreamImage = new Image()
-                image.onload = function () {
-                    ctx.drawImage(image, 0, 0, canvasWidth, canvasHeight);
-                };
-                image.src = 'data:image/jpeg;base64,' + btoa(String.fromCharCode.apply(null, imageData));
-                //sendInitialData();
-            };
-
-            webSocket.onclose = function () {
-                console.log("WebSocket connection closed.");
-            };
-        });
-
-        document.getElementById('StopSignal').addEventListener('click', async (event) => {
-            console.log('Stop Signal!');
-            const response = await fetch("http://localhost:8081/disconnect");
-            console.log(response);
-        });
-
-
-        document.getElementById('StartSignal').addEventListener('click', async (event) => {
-            console.log('Start Signal!');
-            const response = await fetch("http://localhost:8081/start");
-            console.log(response);
-        });
-
-        document.getElementById('CaptureImage').addEventListener('click', async (event) => {
-            console.log('Capture Image!');
-            const response = await fetch("http://localhost:8081/capture");
-            console.log(response);
-
-            const buffer = await response.arrayBuffer();
-            const doubleArray = getTemperatureData(buffer)
-            _ = setBreastViewCanvas();
-            const response1 = await fetch("http://localhost:8081/start");
-
-        });
-
-        function getTemperatureData(buffer) {
-            const view = new DataView(buffer);
-            const numDoubles = buffer.byteLength / 8;
-            const doubleArray = new Array(numDoubles);
-            for (let i = 0; i < numDoubles; i++) {
-                doubleArray[i] = view.getFloat64(i * 8, true); // true for little-endian
+        class ThermalCamera{
+            constructor(){
+                this.websocket = null;
+                this.connected = false;
+                this.streaming = false;
+                this.connectWebSocket();
             }
-            return doubleArray
+            //Establish Websocket conenction with Application
+            connectWebSocket() {
+                this.websocket = new WebSocket('ws://localhost:8080/');
+
+                this.websocket.onopen = () => {
+                    console.log("WebSocket connection established.");
+                    this.connected = true;
+                    guideUser("Connection");
+                };
+
+                this.websocket.onclose = () => {
+                    console.log("WebSocket connection closed.");
+                    this.connected = false;
+                    this.streaming = false;
+                    updateStatus("Start/Restart the Desktop Application");
+                    setTimeout(() => this.connectWebSocket(), 20000);
+                };
+
+                this.websocket.onerror = (error) => {
+                    console.error('WebSocket error:', error);
+                };
+
+                this.websocket.onmessage = (event) => {
+                    const response = JSON.parse(event.data);    
+                    if ((response["Type"] == "Stream") || (response["Type"] == "CSV")){
+                        this.streaming = true;
+                        document.getElementById("minTemp").textContent = (Math.round(response["minTemp"]*100)/100).toString() + "°C";
+                        document.getElementById("maxTemp").textContent = (Math.round(response["maxTemp"]*100)/100).toString() + "°C";
+                        var image = new Image();
+                        const canvas = document.getElementById('livestreamCanvas');
+                        const ctx = canvas.getContext('2d');
+                        image.onload = function () {
+                            ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+                        }; 
+                        image.src = 'data:image/jpeg;base64,' + response["image"]; 
+                    }
+                    if(response["Type"] == "CSV"){
+                        console.log("Image Captured")
+                        breastTempData[selectedBreastView] = response["csv"];
+                        setBreastViewCanvas();
+                    }
+                    if(response["Type"] == "Status"){
+                        updateStatus(response["Message"]);
+                    }
+
+                };
+            }
+            // Connect the Device and start streaming
+            connect() {
+                console.log("Request:Connect");
+                this.websocket.send('/connect');
+            }
+            //Capture the CSV
+            capture(){
+                console.log("Request:Capture Image");
+                this.websocket.send('/capture');
+            }
+            //Start the stream
+            startStream(){
+                console.log("Request:Start Stream");
+                this.websocket.send('/startStream');
+            }
+            //Stop the stream
+            stopStream(){
+                console.log("Request:Stop Stream");
+                this.websocket.send('/stopStream');
+            }
+            //Disconnect the camera
+            disconnect(){
+                console.log("Request: Disconnect")
+                this.websocket.send('/disconnect');
+            }
+            Refresh(){
+                if (this.connected == false){
+                    this.websocket.connectWebSocket();
+                }
+            }
         }
+
+        let cameraController;
+        document.addEventListener('DOMContentLoaded', () => {
+            cameraController = new ThermalCamera();
+
+            // Add event listeners to control buttons
+            document.getElementById('CaptureImage').addEventListener('click', () => {
+                cameraController.capture();
+            });
+
+            document.getElementById('SendConnectSignal').addEventListener('click', () => {
+                cameraController.connect();
+                const button = document.getElementById("SendConnectSignal");
+                button.classList.remove('blink');
+            });
+
+            document.getElementById('StartSignal').addEventListener('click', () => {
+                cameraController.startStream();
+            });
+
+            document.getElementById('StopSignal').addEventListener('click', () => {
+                cameraController.stopStream();
+            });
+        });
 
         function setBreastViewCanvas() {
             const canvas1 = document.getElementById('livestreamCanvas');
@@ -563,8 +614,31 @@
                 }
             }
         }
+        
+        function guideUser(message){
+            setTimeout(function() {
+                // Code to be executed after 2 seconds
+                if ((message == "Connection") && (cameraController.streaming == false)){
+                    updateStatus("Connect to Camera");
+                    const button = document.getElementById("SendConnectSignal")
+                    button.classList.add('blink')
+                }
+            }, 2000);
+        }
+        function updateStatus(message){
+            const element = document.getElementById("statusIndicator");
+            element.textContent = message;
+            if (message.includes("Streaming")){
+                    setTimeout(() => {
+                    element.textContent = "";
+                }, 1000); 
+            }
 
-
+            // element.classList.add('blink')
+            // setTimeout(() => {
+            //     element.classList.remove('blink')
+            // }, 5000);
+        }
 
 
     </script>
