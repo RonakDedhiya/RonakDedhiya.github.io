@@ -43,7 +43,8 @@ I am an experienced Machine Learning and Deep Learning researcher with over 8 ye
 
 1. Dedhiya, Ronak, et al. "Evaluation of Non-Invasive Thermal Imaging for Detection of Viability of Onchocerciasis Worms." 2022 44th Annual International Conference of the IEEE Engineering in Medicine & Biology Society (EMBC). IEEE, 2022. [Link](https://ieeexplore.ieee.org/abstract/document/9871140/)
 2. Dedhiya, Ronak, et al. "Non-invasive Thermal Imaging for Estimation of the Fecundity of Live Female Onchocerca Worms." MICCAI Workshop on Medical Image Assisted Blomarkers’ Discovery. Cham: Springer Nature Switzerland, 2022. [Link](https://link.springer.com/chapter/10.1007/978-3-031-19660-7_10)
-3. Saha, Arka Prabha, et al. "3D-BreastNet: A Self-supervised Deep Learning Network for Reconstruction of 3D Breast Surface from 2D Thermal Images." MICCAI Workshop on Artificial 
+3. Saha, Arka Prabha, et al. "3D-BreastNet: A Self-supervised Deep Learning Network for Reconstruction of 3D Breast Surface from 2D Thermal Images." MICCAI Workshop on Artificial Intelligence over Infrared Images for Medical Applications. Cham: Springer Nature Switzerland, 2023. [Link](https://link.springer.com/chapter/10.1007/978-3-031-44511-8_2)
+4. Dedhiya, Ronak, et al. "Thermal Radiomics for Early Detection of Diabetic Foot Ulcers Using Infrared Thermography" [To be published in MICCAI 2024].
 
 ## Additional Learning from GPT
 
@@ -52,5 +53,6 @@ I am an experienced Machine Learning and Deep Learning researcher with over 8 ye
 3. Gradient Accumulation Example [link](https://chatgpt.com/c/68d77f56-0d64-8324-8e44-8baaafa4f9ed)
 4. Model Parallelism Explanation [link](https://chatgpt.com/c/68d4f115-303c-8327-b7dc-df7ce87cc259)
 5. Emission Absorption Explanation [link](https://chatgpt.com/c/68d4e797-048c-8333-ab93-8c49adb01e45)
-Intelligence over Infrared Images for Medical Applications. Cham: Springer Nature Switzerland, 2023. [Link](https://link.springer.com/chapter/10.1007/978-3-031-44511-8_2)
-6. Dedhiya, Ronak, et al. "Thermal Radiomics for Early Detection of Diabetic Foot Ulcers Using Infrared Thermography" [To be published in MICCAI 2024].
+6. timm library usage [link](https://towardsdatascience.com/getting-started-with-pytorch-image-models-timm-a-practitioners-guide-4e77b4bf9055-2/)
+7. 
+   
