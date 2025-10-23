@@ -54,5 +54,5 @@ I am an experienced Machine Learning and Deep Learning researcher with over 8 ye
 4. Model Parallelism Explanation [link](https://chatgpt.com/c/68d4f115-303c-8327-b7dc-df7ce87cc259)
 5. Emission Absorption Explanation [link](https://chatgpt.com/c/68d4e797-048c-8333-ab93-8c49adb01e45)
 6. timm library usage [link](https://towardsdatascience.com/getting-started-with-pytorch-image-models-timm-a-practitioners-guide-4e77b4bf9055-2/)
-7. 
+7. Transformer patch size effect [link](https://chatgpt.com/share/68fa1aae-52a8-8006-897e-77769fd099f5)
    
